@@ -4,7 +4,6 @@ let b = undefined;
 let opperand = "";
 let firstValueDefined = false;
 
-document.getElementById("display-value").innerText = "14";
 // event listners
 document.getElementById("ac-button").addEventListener("click", clearDisplay);
 document.querySelector("#neg-pos").addEventListener("click", () => {makeNegOrPos(getDisplayValue())});
@@ -29,6 +28,7 @@ document.querySelector("#add").addEventListener("click", () => {
     a = operate(opperand,a,b);
     opperand = "+";
     b = undefined;
+
   }
   else {
     a = getDisplayValue();
@@ -97,11 +97,12 @@ document.querySelector("#equals").addEventListener("click", () => {
   }
 });
 
-/*
+document.querySelector("#percent").addEventListener("click",() => {
+  a = document.getElementById("display-value").innerText/100;
+  b = undefined;
+  document.getElementById("display-value").innerText = a;
+});
 
-document.querySelector("#percent").addEventListener("click", );
-*/
-// button functions
 
 function clearDisplay(){
   a = undefined;
@@ -111,6 +112,9 @@ function clearDisplay(){
 }
 
 function makeNegOrPos(value){
+  let value21 = getDisplayValue().toString();
+  console.log(value21);
+  console.log(value21.length);
   if (document.getElementById('display-value').innerText == "0"){
     document.getElementById('display-value').innerText = "0";
   }
@@ -135,14 +139,14 @@ function isFirstValueDefined(){
 
 // Main operation functions
 function changeDisplayValue(buttonID){
-  if (getDisplayValue().toString.length > 9){
+  if(getDisplayValue().toString().length >= 8){
     document.getElementById('display-value').innerText =
-      getDisplayValue().toString.substring(0,9);
+      getDisplayValue().toString().substring(0,7);
   }
-
   if (isFirstValueDefined() && b === undefined) {
     document.getElementById('display-value').innerText =
       document.getElementById(buttonID).innerText;
+      b = getDisplayValue();
   }
   else if (getDisplayValue() === 0){
     document.getElementById('display-value').innerText =
@@ -153,26 +157,35 @@ function changeDisplayValue(buttonID){
       document.getElementById('display-value').innerText +
       document.getElementById(buttonID).innerText;
   }
+}
 
-
-
-
+function testLength(string) {
+  string = string.toString();
+  if (string.length >= 9){
+    return string.substring(0,9)
+  }
+  else {
+    return string;
+  }
 }
 
 function operate(operator, a, b){
+  let outcome = null;
+
   if (operator === "+"){
-    return (a+b);
+    outcome = a + b;
+    return testLength(outcome);
   }
   else if (operator === "-"){
-    return (a-b);
+    outcome = a - b;
+    return testLength(outcome);
   }
   else if (operator === "*"){
-    return (a*b);
+    outcome = a*b;
+    return testLength(outcome);
   }
   else if (operator === "/"){
-    if (b == "0" || b == 0){
-      return "Nope"
-    }
-    return (a/b);
+    outcome = a/b;
+    return testLength(outcome);
   }
 }
