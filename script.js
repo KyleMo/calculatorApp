@@ -139,9 +139,9 @@ function isFirstValueDefined(){
 
 // Main operation functions
 function changeDisplayValue(buttonID){
-  if(getDisplayValue().toString().length >= 8){
+  if(getDisplayValue().toString().length >= 6){
     document.getElementById('display-value').innerText =
-      getDisplayValue().toString().substring(0,7);
+      testLength(getDisplayValue().toString());
   }
   if (isFirstValueDefined() && b === undefined) {
     document.getElementById('display-value').innerText =
@@ -161,8 +161,8 @@ function changeDisplayValue(buttonID){
 
 function testLength(string) {
   string = string.toString();
-  if (string.length >= 9){
-    return string.substring(0,9)
+  if (string.length >= 6){
+    return Number.parseFloat(string).toExponential(3);
   }
   else {
     return string;
