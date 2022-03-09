@@ -1,7 +1,5 @@
 # Calculator App
-An app that functions as a basic calculator, including addition, subtraction, multiplication, and division. 
-
-Technology used includes HTML, CSS and JavaScript. 
+An app that functions as a basic calculator. Technology used includes HTML, CSS and JavaScript. 
 
 The biggest challenges I faced was ensuring the behaviour of the calculator functioned as intended. Example include:
   - What happens when "2", then "*", then "=" is inputed.
